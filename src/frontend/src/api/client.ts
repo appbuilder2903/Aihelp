@@ -1,13 +1,14 @@
 import type { Provider } from "@/types";
 
 // In production (Cloudflare Pages), API routes are co-hosted at the same origin.
+// For GitHub Pages, set VITE_API_BASE_URL to your deployed API origin.
 // In local dev, Vite proxies /api/* to the wrangler dev server (port 8787).
-const API_BASE = "";
+const rawApiBase = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE = rawApiBase.endsWith("/")
+  ? rawApiBase.slice(0, -1)
+  : rawApiBase;
 
-async function apiRequest<T>(
-  path: string,
-  init?: RequestInit,
-): Promise<T> {
+async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${API_BASE}${path}`;
   let res: Response;
 

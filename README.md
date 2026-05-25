@@ -72,6 +72,19 @@ Add each key as an **encrypted secret**. You only need the providers you want to
 
 ---
 
+## 🌐 GitHub Pages Deployment (frontend-only)
+
+Use GitHub Pages if you want to host only the UI and point it at a separate API.
+
+1. Deploy the API separately (Cloudflare Workers or any compatible host).
+2. Add a repository variable named `VITE_API_BASE_URL` with your API origin (example: `https://your-api.example.com`).
+3. Ensure the workflow branch in `.github/workflows/gh-pages.yml` matches your default branch.
+4. In **Settings → Pages**, set **Source** to **GitHub Actions**.
+
+The workflow automatically sets the correct Vite `BASE_PATH` for GitHub Pages.
+
+---
+
 ## 🛠️ Local Development
 
 ```bash
@@ -99,6 +112,7 @@ npm run preview    # http://localhost:8787
 
 ```
 homework-helper-cf/
+├── .github/workflows/gh-pages.yml  ← GitHub Pages build + deploy
 ├── functions/api/
 │   ├── chat.ts          ← POST /api/chat — routes to 30+ AI providers
 │   └── providers.ts     ← GET /api/providers — returns active providers

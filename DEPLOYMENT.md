@@ -18,6 +18,19 @@ Browser
 
 ---
 
+## 🌐 GitHub Pages Deployment (frontend-only)
+
+GitHub Pages hosts the UI only. Deploy the API separately.
+
+1. Deploy the API (Cloudflare Workers or any compatible host).
+2. In GitHub, add a repository variable `VITE_API_BASE_URL` with your API origin.
+3. Confirm `.github/workflows/gh-pages.yml` targets your default branch.
+4. In **Settings → Pages**, set **Source** to **GitHub Actions**.
+
+The workflow sets `BASE_PATH=/<repo>/` so Vite builds with the correct asset paths.
+
+---
+
 ## Provider Tiers
 
 ### Tier 1 — Commercial LLMs (7 providers)
