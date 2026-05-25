@@ -1,0 +1,19 @@
+{
+  "name": "homework-helper-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-powered homework helper – Cloudflare Pages + Workers",
+  "scripts": {
+    "postinstall": "cd src/frontend && npm install",
+    "build": "cd src/frontend && npm run build",
+    "dev": "cd src/frontend && npm run dev",
+    "preview": "wrangler pages dev src/frontend/dist --compatibility-date=2024-09-23 --compatibility-flags=nodejs_compat",
+    "deploy": "npm run build && wrangler pages deploy src/frontend/dist --project-name=homework-helper-ai",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240909.0",
+    "typescript": "^5.8.3",
+    "wrangler": "^3.78.0"
+  }
+}
